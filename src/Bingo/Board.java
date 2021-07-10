@@ -1,50 +1,68 @@
 package Bingo;
 
-import java.util.Arrays;
-
 public class Board {
     boolean[][] myBoard = new boolean[5][5];
 
-    Board(){
+    Board() {
         putInit();
     }
 
     void putInit() {
-        int x = 0;
-        int y = 0;
-        for(int i) {
+        for (int i = 0; i < 2; i++) {
+            int x = 0;
+            int y = 0;
             x = (int) (Math.random() * 5);
             y = (int) (Math.random() * 5);
-            if(x==2 && y==2)
+            if (x == 2 && y == 2) {
+                i--;
                 continue;
-            else
-                swapBoard(myBoard,x,y);
+            } else if (myBoard[x][y]) {
+                i--;
+                continue;
+            } else
+                swapBoard(myBoard, x, y);
         }
     }
 
     void putBomb(int x, int y) {
-        swapBoard(myBoard,x,y);
-        swapBoard(myBoard,x+1,y);
-        swapBoard(myBoard,x-1,y);
-        swapBoard(myBoard,x,y+1);
-        swapBoard(myBoard,x,y-1);
+        swapBoard(myBoard, x, y);
+        swapBoard(myBoard, x + 1, y);
+        swapBoard(myBoard, x - 1, y);
+        swapBoard(myBoard, x, y + 1);
+        swapBoard(myBoard, x, y - 1);
     }
 
-    boolean[][] swapBoard(boolean[][] board, int x, int y){
-        board[x][y] = !board[x][y];
-        return board;
-    }
-
-    boolean checkBingo (boolean board[][]){
-
-    }
-
-    void printBoard() {
-        for (int i = 0; i < this.myBoard.length; i++) {
-            System.out.println(Arrays.toString(myBoard[i]));
+    boolean[][] swapBoard(boolean[][] board, int x, int y) {
+        if (x < 0 || x > 4 || y < 0 || y > 4)
+            return board;
+        else {
+            board[x][y] = !board[x][y];
+            return board;
         }
     }
 
+    private boolean isEmpty(boolean[][] board, int x, int y) {
+        if (board[x][y])
+            return true;
+        else
+            return false;
+    }
+
+//    boolean checkBingo (boolean board[][]){
+//
+//    }
+
+    void printBoard() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (isEmpty(myBoard, i, j))
+                    System.out.print("o");
+                else
+                    System.out.print("x");
+            }
+            System.out.println();
+        }
+    }
 
 
 }
