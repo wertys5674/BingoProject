@@ -1,12 +1,20 @@
 package Bingo;
 
 public class BingoRules {
-    boolean verticalBingo(boolean[][] board){
+    static boolean verticalBingo(boolean[][] board) {
+        int count=0;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++){
+                if(board[i][j])
+                    count++;
+                if(count==5){
 
-        return true;
+                }
+            }
+        }
     }
 
-    boolean horizontalBingo(boolean[][] board){
+    static boolean horizontalBingo(boolean[][] board) {
         return true;
     }
 

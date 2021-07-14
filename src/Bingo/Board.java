@@ -2,6 +2,7 @@ package Bingo;
 
 public class Board {
     boolean[][] myBoard = new boolean[5][5];
+    boolean[][] finalBoard = new boolean[5][5];
 
     Board() {
         putInit();
@@ -48,11 +49,13 @@ public class Board {
             return false;
     }
 
-//    boolean checkBingo (boolean board[][]){
-//
-//    }
+    boolean fixBingo (boolean board[][]){
+        if(BingoRules.horizontalBingo(board))
+            return true;
+        else
+    }
 
-    void printBoard() {
+    void printBoard(boolean board[][]) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 if (isEmpty(myBoard, i, j))
