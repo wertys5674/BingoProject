@@ -49,10 +49,10 @@ public class Board {
             return false;
     }
 
-    boolean fixBingo (boolean board[][]){
+    void checkBingo (boolean board[][]){
         if(BingoRules.horizontalBingo(board))
-            return true;
-        else
+            //해당 빙고를 파이널 빙고에 true 로 저장.
+        else if(BingoRules.verticalBingo())
     }
 
     void printBoard(boolean board[][]) {
