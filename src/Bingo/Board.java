@@ -42,30 +42,43 @@ public class Board {
         }
     }
 
-    private boolean isEmpty(boolean[][] board, int x, int y) {
-        if (board[x][y])
-            return true;
-        else
-            return false;
+
+    void checkBingo(boolean board[][]) {
+        for (int i = 0; i < 5; i++) {
+            fixBingoX(BingoRules.verticalBingo(i, board));
+            fixBingoY(BingoRules.horizontalBingo(i,board));
+        }
     }
 
-    void checkBingo (boolean board[][]){
-        if(BingoRules.horizontalBingo(board))
-            //해당 빙고를 파이널 빙고에 true 로 저장.
-        else if(BingoRules.verticalBingo())
+    void fixBingoX(int i) {
+        for (int j = 0; j < 5; j++) {
+            finalBoard[i][j] = true;
+        }
+    }
+
+    void fixBingoY(int i) {
+        for (int j = 0; j < 5; j++) {
+            finalBoard[j][i] = true;
+        }
     }
 
     void printBoard(boolean board[][]) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 if (isEmpty(myBoard, i, j))
-                    System.out.print("o");
-                else
                     System.out.print("x");
+                else
+                    System.out.print("o");
             }
             System.out.println();
         }
     }
 
+    private boolean isEmpty(boolean[][] board, int x, int y) {
+        if (board[x][y])
+            return true;
+        else
+            return false;
+    }
 
 }
